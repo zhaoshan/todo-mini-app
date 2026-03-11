@@ -1,50 +1,167 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# SimpleTodo Mini Program Constitution
 
-## Core Principles
+**项目类型**: 微信小程序 - 待办事项管理  
+**技术栈**: 微信小程序原生框架 (WXML/WXSS/JavaScript)  
+**Version**: 1.0.0  
+**Ratified**: 2026-03-11  
+**Last Amended**: 2026-03-11
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+---
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+## 核心原则
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### 一、极简主义 (MINIMALISM)
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+- ✅ 功能极简：仅保留核心的创建、查看、完成、删除功能
+- ✅ 代码极简：不依赖任何 npm 包，纯原生开发
+- ✅ 界面极简：清晰直观，零学习成本
+- ✅ 数据极简：本地存储，不联网，不收集用户信息
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### 二、原生优先 (NATIVE-FIRST)
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+- ✅ 严格遵循微信小程序官方开发规范
+- ✅ 使用标准 WXML/WXSS/JS/JSON 项目结构
+- ✅ 优先使用微信原生 API（`wx.getStorage`、`wx.setStorage`、`wx.getUserProfile` 等）
+- ✅ 不使用云开发，不依赖第三方服务
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### 三、数据本地化 (LOCAL-FIRST)
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+- ✅ 所有数据存储在本地（`wx.setStorageSync`）
+- ✅ 不依赖后端服务器
+- ✅ 离线可用，无需网络连接
+- ✅ 存储容量限制 10MB，需合理控制数据大小
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### 四、测试驱动 (TEST-DRIVEN)
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+- ✅ 关键功能必须有测试验证
+- ✅ 手动测试清单必须完整
+- ✅ 真机测试必须通过（iOS + Android）
+- ✅ 开发者工具测试必须通过
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### 五、渐进增强 (PROGRESSIVE-ENHANCEMENT)
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- ✅ 基础功能必须独立可用
+- ✅ 增强功能（如用户信息）可选
+- ✅ 优雅降级：授权失败显示默认状态
+- ✅ 兼容性：支持基础库 2.19.0+
+
+---
+
+## 技术约束
+
+### 开发环境
+
+| 项目 | 要求 |
+|------|------|
+| 微信开发者工具 | 最新版 |
+| 基础库版本 | ≥ 2.19.0 |
+| 调试基础库 | 2.19.0+ |
+| 测试设备 | iOS + Android 真机 |
+
+### 代码规范
+
+| 规范 | 要求 |
+|------|------|
+| 命名规范 | 驼峰命名（变量/函数），大驼峰（组件） |
+| 缩进 | 2 空格 |
+| 单行长度 | ≤ 120 字符 |
+| 注释 | 关键函数必须有注释 |
+| 日志 | 生产环境移除 `console.log` |
+
+### 性能要求
+
+| 指标 | 目标 |
+|------|------|
+| 首屏加载 | ≤ 1 秒 |
+| 列表渲染 | 100 条数据流畅滚动 |
+| 存储操作 | 单次 ≤ 100ms |
+| 页面切换 | ≤ 300ms |
+
+---
+
+## 开发工作流
+
+### 标准流程
+
+```
+1. 需求分析 → 2. 任务分解 → 3. 实现代码 → 4. 测试验证 → 5. 提交代码
+```
+
+### 任务管理
+
+- 使用 `.specify/tasks/tasks.md` 跟踪任务
+- 完成任务后标记为 ✅
+- 新增任务需记录到任务文件
+
+### 代码提交
+
+- Commit message 格式：`[M1/M2/M3/M4/M5] 任务编号：简要说明`
+- 示例：`[M2] Task 2.3: 实现列表页逻辑`
+- 每个任务一个提交
+
+---
+
+## 质量要求
+
+### 功能完整性
+
+- [ ] 所有任务列表中的功能已实现
+- [ ] 无控制台错误
+- [ ] 无未处理的异常
+
+### 用户体验
+
+- [ ] 空状态有友好提示
+- [ ] 加载状态有视觉反馈
+- [ ] 错误操作有明确提示
+- [ ] 按钮状态（禁用/启用）正确
+
+### 兼容性
+
+- [ ] iOS 微信测试通过
+- [ ] Android 微信测试通过
+- [ ] 开发者工具测试通过
+- [ ] 不同屏幕尺寸适配正常
+
+---
+
+## 项目结构
+
+```
+todo-mini-app/
+├── app.js                      # 小程序入口
+├── app.json                    # 全局配置
+├── app.wxss                    # 全局样式
+├── project.config.json         # 项目配置
+├── pages/
+│   ├── reminders/              # 提醒相关页面
+│   │   ├── index/              # 列表页
+│   │   └── create/             # 创建页
+│   └── mine/                   # 我的页面
+├── utils/
+│   └── storage.js              # 存储工具
+└── images/                     # 图片资源
+```
+
+---
+
+## 治理规则
+
+### 宪法优先级
+
+本宪法是项目最高指导原则，所有开发决策必须遵循宪法规定。
+
+### 修改流程
+
+1. 提出修改建议
+2. 记录修改原因
+3. 更新版本号
+4. 记录修改日期
+
+### 合规检查
+
+所有代码提交和审查必须验证是否符合宪法原则。
+
+---
+
+**本宪法自 2026-03-11 起生效，所有开发人员必须严格遵守。**
